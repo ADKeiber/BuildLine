@@ -1,0 +1,17 @@
+.item-info{
+  border: 5px solid gray;
+  margin-left:30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding:5px;
+}
+.error{
+  background-color: #f29696;
+}
+
+.warning{
+  background-color: #eff296;
+}
+.completed{
+  background-color: #83f56a;
+}

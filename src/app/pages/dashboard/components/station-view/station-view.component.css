@@ -1,0 +1,9 @@
+.station{
+  display:block;
+}
+.hiding{
+  display:none;
+}
+.items{
+  min-height: 100px;
+}

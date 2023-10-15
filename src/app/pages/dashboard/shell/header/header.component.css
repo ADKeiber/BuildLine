@@ -1,0 +1,12 @@
+img {
+  height: 100px;
+}
+
+.search{
+  height: 50px;
+}
+
+.header{
+  border-bottom: 1px solid darkgray;
+  box-shadow: 0 5px rgba(100,100,100,.075);
+}

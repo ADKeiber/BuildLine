@@ -1,0 +1,12 @@
+.stations{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+app-station-view{
+  /* display: inline; */
+  flex-wrap:wrap;
+  -webkit-flex-wrap: wrap;
+  padding-left: 10px;
+}

@@ -1,0 +1,39 @@
+<div class="item-info" [ngClass]="{'warning':warningTrigger, 'error': errorTrigger,'completed': completedTrigger}" (click)="itemClick($event)">
+  <div style="display: flex; justify-content: space-between;align-items:flex-end">
+    <span>Item ID: {{item.id}}</span>
+<!--    <app-item-options [item]="item"></app-item-options>-->
+  </div>
+  <div>
+    <span>Item Name: {{item.itemName}}</span>
+  </div>
+  <div>
+    <span>PO Number: {{item.purchaseOrder.poNumber}}</span>
+  </div>
+  <div>
+    <span class="justify-content-center align-content-center w-12" >
+      Status:
+      <p-dropdown [options]="statusOptions" [(ngModel)]="currentStatus" optionLabel="status"
+              placeholder="Dashboard" (onChange)="updateStatus()" autoWidth="false"></p-dropdown>
+    </span>
+
+<!--    <span>Status: {{item.status}}</span>-->
+  </div>
+  <div *ngIf = "!completedTrigger">
+    <span>Current Time In Station: {{timeInStationMinutes}} min(s) {{timeInStationSeconds}} sec(s)</span>
+  </div>
+  <div *ngIf = "completedTrigger">
+    <span>Time To Complete: {{timeInStationMinutes}} min(s) {{timeInStationSeconds}} sec(s)</span>
+  </div>
+  <div>
+    <span>Quantity of parts: {{item.partQuantity}}</span>
+  </div>
+  <div>
+    <span>Item Description: {{item.itemDescription}}</span>
+  </div>
+  <div>
+    <span>Product Line: {{item.itemLine}}</span>
+  </div>
+  <div>
+    <span>Item Color: {{item.itemColor}}</span>
+  </div>
+</div>

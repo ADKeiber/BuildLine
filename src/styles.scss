@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  font-size: 1rem;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--surface-b);
+  color: var(--text-color);
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  --webkit-font-smoothing:antialiased;
+  --moz-osx-font-smoothing:grayscale;
+}
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  pointer-events: none;
+}
+/* high-performance display:none; helper */
+.gu-hide {
+  left: -9999px !important;
+}
+/* added to mirrorContainer (default = body) while dragging */
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+/* added to the source element while its mirror is dragged */
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+@import "primeng/resources/primeng.min.css";
+@import "primeng/resources/themes/arya-green/theme.css";
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.scss";

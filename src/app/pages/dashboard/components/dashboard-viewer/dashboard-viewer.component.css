@@ -1,0 +1,7 @@
+div {
+  padding-bottom: 25px;
+}
+
+.scrollWindow{
+  overflow-y:auto;
+}

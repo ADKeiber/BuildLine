@@ -1,0 +1,10 @@
+<p-card class="flex flex-wrap ">
+  <h2 class="m-4">
+    {{lineName}}
+<!--     <i class="pi" [ngClass]="clicked ? 'pi-angle-double-down' : 'pi-angle-double-up'"></i>-->
+  </h2>
+  <div class=" stations flex justify-content-evenly" >
+    <app-station-view *ngFor="let n of stations$|async;
+        let i = index;" [station]=n  [lineIndex]=line.id></app-station-view>
+  </div>
+</p-card>

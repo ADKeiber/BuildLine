@@ -1,0 +1,5 @@
+<div class="w-full">
+  <div *ngFor="let n of sideSections(); let i = index;" class="border-gray-300 border-bottom-2 hover:shadow-2">
+    <app-side-element [test] = n></app-side-element>
+  </div>
+</div>

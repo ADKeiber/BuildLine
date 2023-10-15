@@ -1,0 +1,7 @@
+<div class="flex h-9rem flex-wrap align-items-center justify-content-center header sm:h-10rem pb-3">
+  <img class="flex" src="../../../../../assets/MWLogo.png" alt="image" (click)="logout()">
+  <div class="w-6">
+    <p-autoComplete class="" [(ngModel)]="selectedItem" [suggestions]="suggestions" (completeMethod)="search($event)" placeholder="Search" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-autoComplete>
+  </div>
+</div>
+
