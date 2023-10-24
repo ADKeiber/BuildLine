@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {selectBusinessLineStations} from "../../../../core/store/selectors/business.selectors";
 import {JWTHelper} from "../../../../core/models/JWT";
 import {select, Store} from "@ngrx/store";
 import {Station} from "../../../../core/models/Station";
@@ -7,6 +6,7 @@ import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {AppState} from "../../../../core/models/IAppState";
 import {Line} from "../../../../core/models/Line";
+import {selectBusinessStationsWithIds} from "../../../../core/store/selectors/business.selectors";
 
 @Component({
   selector: 'app-line-view',
@@ -14,17 +14,19 @@ import {Line} from "../../../../core/models/Line";
   styleUrls: ['./line-view.component.css']
 })
 export class LineViewComponent implements OnInit {
-
-  @Input() line:Line = new Line(1);
+  // @Input() lineId: string = "";
+  @Input() line:Line = new Line("1");
   lineName: string = "";
   constructor(private store: Store<AppState>) {}
 
   stations$: Observable<Station[]> = new Observable<Station[]>();
   ngOnInit(): void {
-    this.lineName = this.line.getLineName();
-    this.line.getSteps();
+    // console.log("Line #" + this.line.lineId)
+    this.lineName = this.line.lineName;
+    // console.log("LINE STEP IDS: " + this.line.lineName)
+    // @ts-ignore
     this.stations$ = this.store.pipe(
-      select(selectBusinessLineStations('0'))
+      select(selectBusinessStationsWithIds(this.line.stationIds))
     );
   }
 }

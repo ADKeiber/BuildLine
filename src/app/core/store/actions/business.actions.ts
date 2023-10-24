@@ -29,3 +29,19 @@ export const updateStationExpanded = createAction(
   "[Dashboard Overview] Update Station's expanded",
   props<{stationId: string, expanded: boolean}>()
 )
+
+export const loadLines = createAction(
+  "[Dashboard Overview] Load Lines"
+)
+export const loadLinesSuccess = createAction(
+  "[Dashboard Overview] Load Lines success",
+  props<{lines: Map<string,Line>}>()
+)
+
+export const loadStations = createAction(
+  "[Dashboard Overview] Load Stations"
+)
+export const loadStationsSuccess = createAction(
+  "[Dashboard Overview] Load Stations success",
+  props<{stations: Map<string,Station>}>()
+)

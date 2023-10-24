@@ -36,6 +36,17 @@ import {TreeSelectModule} from "primeng/treeselect";
     ItemViewComponent,
   ],
   exports: [],
-  imports: [CommonModule, DashboardRoutingModule, AutoCompleteModule, FormsModule, DropdownModule, StoreModule.forFeature('business', businessReducer), CardModule, DragulaModule, TreeSelectModule,]
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    AutoCompleteModule,
+    FormsModule,
+    DropdownModule,
+    StoreModule.forFeature('business', businessReducer),
+
+    CardModule,
+    DragulaModule,
+    TreeSelectModule,
+  ]
 })
 export class DashboardModule { }

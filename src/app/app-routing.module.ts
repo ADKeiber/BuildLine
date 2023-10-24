@@ -22,10 +22,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
-  {
-    path:"**",
-    redirectTo: "/login"
-  },
 ]
 
 @NgModule({

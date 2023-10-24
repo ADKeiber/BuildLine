@@ -1,0 +1,7 @@
+{
+  "/getLines": {
+    "target": "localhost:8080/line/getAll",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

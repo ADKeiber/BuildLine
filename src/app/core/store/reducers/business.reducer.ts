@@ -6,13 +6,15 @@ import {createImmerReducer} from "ngrx-immer/store";
 import {Station} from "../../models/Station";
 import {Section} from "../../models/Section";
 import {ItemStatus} from "../../models/ItemStatus";
-import {updateStationExpanded} from "../actions/business.actions";
+import { enableMapSet } from 'immer'
 
+enableMapSet();
 export const businessReducer = createImmerReducer(
   initialBusinessState,
   on(BusinessActions.updateStationSections, (state, action): BusinessState => {
 
-    let station:Station = state.stations[action.stationId]
+    // @ts-ignore
+    let station:Station = state.stations.get(action.stationId)
 
     station.backlogItems = action.backlogItems;
     station.currentItems = action.currentItems;
@@ -22,7 +24,8 @@ export const businessReducer = createImmerReducer(
 
   }),
   on(BusinessActions.updateItemStatus, (state, action) : BusinessState => {
-    let station: Station = state.stations[action.stationId]
+    // @ts-ignore
+    let station: Station = state.stations.get(action.stationId)
     station.expanded = !station.expanded;
     let itemStatus = action.newStatus;
     let itemCopy = JSON.parse(JSON.stringify(action.item));
@@ -88,7 +91,24 @@ export const businessReducer = createImmerReducer(
 
   }),
   on(BusinessActions.updateStationExpanded, (state, action) : BusinessState => {
-    state.stations[action.stationId].expanded = action.expanded
+    // @ts-ignore
+    state.stations.get(action.stationId).expanded = action.expanded
     return state;
+  }),
+  on(BusinessActions.loadLinesSuccess, (state, action) => {
+    let stateUpdated: BusinessState = {
+      ...state,
+      lines:action.lines
+    }
+    // console.log(stateUpdated);
+    return stateUpdated;
+  }),
+  on(BusinessActions.loadStationsSuccess, (state, action         ) => {
+    let stateUpdated: BusinessState = {
+      ...state,
+      stations:action.stations
+    }
+    // console.log(stateUpdated);
+    return stateUpdated;
   }),
 )

@@ -1,9 +1,14 @@
+<!--<div class="p-6 w-12 h-max scrollWindow">-->
+<!--  <div *ngIf="lines$ | async as lines; else loading">-->
+<!--    <div *ngFor="let line of lines; trackBy: getLineId">-->
+<!--       <pre>For Debugging: {{ line | json }}</pre>-->
+<!--      <app-line-view [line] = "line"></app-line-view>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <ng-template #loading>Loading...</ng-template>-->
+<!--</div>-->
 <div class="p-6 w-12 h-max scrollWindow">
-  <div *ngIf="lines$ | async as lines; else loading">
-    <div *ngFor="let line of lines; trackBy: getLineId">
-      <!-- <pre>For Debugging: {{ line | json }}</pre> -->
-      <app-line-view [line] = "line"></app-line-view>
-    </div>
+  <div *ngFor="let line of lines$ | async">
+    <app-line-view [line] = "line"></app-line-view>
   </div>
-  <ng-template #loading>Loading...</ng-template>
 </div>
