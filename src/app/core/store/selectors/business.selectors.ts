@@ -34,9 +34,10 @@ export const selectBusinessStationsWithIds = (ids: string[])  => createSelector(
     return stations;
   });
 
-export const selectBusinessStationsWithId = (id: string)  => createSelector(
+export const selectBusinessStationWithId = (id: string)  => createSelector(
   selectBusinessState, state => {
-    // console.log("station with id: " + state.stations.get(id))
+    // console.log("station with id: " )
+    // console.log(state.stations.get(id))
     return state.stations.get(id);
   });
 

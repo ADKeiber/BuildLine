@@ -21,8 +21,8 @@ export class StationService {
         for(let value of data){
           stationsWithId.set(value.stationId, value);
         }
-        console.log("STATION DATA With THEIR IDS: ")
-        console.log(stationsWithId)
+        // console.log("STATION DATA With THEIR IDS: ")
+        // console.log(stationsWithId)
         return stationsWithId;
       }));
   }

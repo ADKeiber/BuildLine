@@ -8,7 +8,9 @@ import {Observable, Subscription} from "rxjs";
 import {updateStationExpanded, updateStationSections} from "../../../../core/store/actions/business.actions";
 import {Section} from "../../../../core/models/Section";
 import {ItemStatus} from "../../../../core/models/ItemStatus";
-import {selectBusinessStationsWithId} from "../../../../core/store/selectors/business.selectors";
+import {
+  selectBusinessStationWithId
+} from "../../../../core/store/selectors/business.selectors";
 
 @Component({
   selector: 'app-station-view',
@@ -19,14 +21,15 @@ export class StationViewComponent implements OnInit, OnDestroy {
   subs = new Subscription();
   constructor(private store: Store<AppState>, private dragulaService:DragulaService){
   }
-  @Input() station: Station = new Station("","");
+  @Input() stationId: String | undefined;
   @Input() lineIndex = "0";
   stationDropName = "";
+  station: Station = new Station("", "");
 
   clicked(event:any){
     event.stopPropagation();
     let newExpanded = !this.station.expanded;
-    // this.store.dispatch(updateStationExpanded({stationId: this.station.stationId, expanded: newExpanded}))
+    this.store.dispatch(updateStationExpanded({stationId: this.station.stationId, expanded: newExpanded}))
   }
 
   ngOnDestroy(): void {
@@ -36,7 +39,12 @@ export class StationViewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // console.log("STATION INFORMATION: " + this.station)
     // this.stationDropName = this.lineIndex + " " + this.station.stationId;
-
+    // console.log("StationID: ")
+    // console.log(this.stationId)
+    // @ts-ignore
+    this.store.pipe(select(selectBusinessStationWithId(this.stationId))).subscribe( station => this.station = station);
+    // console.log("Station after pipe: ")
+    // console.log(this.station)
     this.subs.add(this.dragulaService.dropModel(this.stationDropName)
       .subscribe((data) => {
         let id = data.item.id

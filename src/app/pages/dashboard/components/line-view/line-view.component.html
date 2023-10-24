@@ -4,7 +4,7 @@
 <!--     <i class="pi" [ngClass]="clicked ? 'pi-angle-double-down' : 'pi-angle-double-up'"></i>-->
   </h2>
   <div class=" stations flex justify-content-evenly" >
-    <app-station-view *ngFor="let n of stations$|async;
-        let i = index;" [station]="n" [lineIndex]=line.lineId></app-station-view>
+    <app-station-view *ngFor="let n of line.stationIds;
+        let i = index;" [stationId]="n" [lineIndex]=line.lineId></app-station-view>
   </div>
 </p-card>

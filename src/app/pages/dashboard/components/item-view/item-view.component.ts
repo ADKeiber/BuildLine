@@ -146,7 +146,7 @@ export class ItemViewComponent implements OnInit, DoCheck {
     this.timeInStationSeconds= this.currentTimeInSeconds % 60;
   }
   updateStatus(){
-    console.log("Current Status: " + this.currentStatus.status)
+    // console.log("Current Status: " + this.currentStatus.status)
     this.store.dispatch(updateItemStatus({stationId: this.stationId, oldSection: this.item.currentSection, item:this.item, newStatus:this.currentStatus.status}))
   }
 }

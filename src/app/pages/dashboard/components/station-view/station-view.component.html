@@ -1,32 +1,32 @@
 <p-card class="stationCss" (click)="clicked($event)">
-<!--  <div *ngIf="station.stationId != undefined">-->
-<!--    <h5>-->
-<!--      Station {{station.stationId}}: {{station.name}}-->
-<!--      <i class="pi" [ngClass]="!this.station.expanded ? 'pi-angle-down' : 'pi-angle-up'" style="font-size: 1rem"></i>-->
-<!--    </h5>-->
-<!--    <p>Warnings: {{station.warnings}}</p>-->
-<!--    <p>Errors: {{station.errors}}</p>-->
-<!--    <p>Total Items: {{station.backlogItems.length + station.currentItems.length + station.completedItems.length }}</p>-->
-<!--    <p>Amount Queued Up: {{station.backlogItems.length}}</p>-->
+  <div *ngIf="station.stationId != undefined">
+    <h5>
+      Station {{station.stationId}}: {{station.name}}
+      <i class="pi" [ngClass]="!this.station.expanded ? 'pi-angle-down' : 'pi-angle-up'" style="font-size: 1rem"></i>
+    </h5>
+    <p>Warnings: {{station.warnings}}</p>
+    <p>Errors: {{station.errors}}</p>
+    <p>Total Items: {{station.backlogItems.length + station.currentItems.length + station.completedItems.length }}</p>
+    <p>Amount Queued Up: {{station.backlogItems.length}}</p>
 
-<!--    <p [ngClass] ="{'hiding':!this.station.expanded}">Items:</p>-->
-<!--    <div [ngClass] ="{'hiding':!this.station.expanded}" class="items backlog" dragula="{{stationDropName}}" [dragulaModel]="station.backlogItems">-->
-<!--      <app-item-view *ngFor="let n of station.backlogItems; let i = index;" [item] = n class="item" #item [stationId]="station.stationId" ></app-item-view>-->
-<!--    </div>-->
+    <p [ngClass] ="{'hiding':!this.station.expanded}">Items:</p>
+    <div [ngClass] ="{'hiding':!this.station.expanded}" class="items backlog" dragula="{{stationDropName}}" [dragulaModel]="station.backlogItems">
+      <app-item-view *ngFor="let n of station.backlogItems; let i = index;" [item] = n class="item" #item [stationId]="station.stationId" ></app-item-view>
+    </div>
 
-<!--    <p>Current Work Items: {{station.currentItems.length}}</p>-->
+    <p>Current Work Items: {{station.currentItems.length}}</p>
 
-<!--    <p [ngClass] ="{'hiding':!this.station.expanded}">Items:</p>-->
-<!--    <div [ngClass] ="{'hiding':!this.station.expanded}" class="items current" dragula="{{stationDropName}}" [dragulaModel]="station.currentItems">-->
-<!--      <app-item-view *ngFor="let n of station.currentItems; let i = index;" [item] = n class="item" #item [stationId]="station.stationId"></app-item-view>-->
-<!--    </div>-->
+    <p [ngClass] ="{'hiding':!this.station.expanded}">Items:</p>
+    <div [ngClass] ="{'hiding':!this.station.expanded}" class="items current" dragula="{{stationDropName}}" [dragulaModel]="station.currentItems">
+      <app-item-view *ngFor="let n of station.currentItems; let i = index;" [item] = n class="item" #item [stationId]="station.stationId"></app-item-view>
+    </div>
 
-<!--    <p>Completed Items: {{station.completedItems.length}}</p>-->
+    <p>Completed Items: {{station.completedItems.length}}</p>
 
-<!--    <p [ngClass] ="{'hiding':!this.station.expanded}">Items:</p>-->
-<!--    <div class="items completed" [ngClass] ="{'hiding':!this.station.expanded}" dragula="{{stationDropName}}" [dragulaModel]="station.completedItems">-->
-<!--      <app-item-view *ngFor="let n of station.completedItems; let i = index;" [item] = n class="item" #item [stationId]="station.stationId"></app-item-view>-->
-<!--    </div>-->
+    <p [ngClass] ="{'hiding':!this.station.expanded}">Items:</p>
+    <div class="items completed" [ngClass] ="{'hiding':!this.station.expanded}" dragula="{{stationDropName}}" [dragulaModel]="station.completedItems">
+      <app-item-view *ngFor="let n of station.completedItems; let i = index;" [item] = n class="item" #item [stationId]="station.stationId"></app-item-view>
+    </div>
 
-<!--  </div>-->
+  </div>
 </p-card>
