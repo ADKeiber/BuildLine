@@ -1,13 +1,13 @@
 <div class="item-info" [ngClass]="{'warning':warningTrigger, 'error': errorTrigger,'completed': completedTrigger}" (click)="itemClick($event)">
   <div style="display: flex; justify-content: space-between;align-items:flex-end">
-    <span>Item ID: {{item.id}}</span>
+    <span>Item ID: {{item.itemId}}</span>
 <!--    <app-item-options [item]="item"></app-item-options>-->
   </div>
   <div>
-    <span>Item Name: {{item.itemName}}</span>
+    <span>Item Name: {{item.name}}</span>
   </div>
   <div>
-    <span>PO Number: {{item.purchaseOrder.poNumber}}</span>
+    <span>PO Number: {{item.purchaseOrder.purchaseOrderId}}</span>
   </div>
   <div>
     <span class="justify-content-center align-content-center w-12" >
@@ -31,9 +31,9 @@
     <span>Item Description: {{item.itemDescription}}</span>
   </div>
   <div>
-    <span>Product Line: {{item.itemLine}}</span>
+    <span>Product Line: {{item.itemLine.description}}</span>
   </div>
   <div>
-    <span>Item Color: {{item.itemColor}}</span>
+    <span>Item Color: {{item.color}}</span>
   </div>
 </div>

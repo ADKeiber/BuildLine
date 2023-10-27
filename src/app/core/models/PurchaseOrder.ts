@@ -3,7 +3,7 @@ import {Company} from "./Company";
 import {ItemLine} from "./ItemLine";
 
 export class PurchaseOrder {
-  poNumber: number;
+  purchaseOrderId: string;
   price: string;
   description: string;
   itemQuantity: [{
@@ -14,7 +14,7 @@ export class PurchaseOrder {
   business: Company
   items: Item[]
   constructor() {
-    this.poNumber = 1
+    this.purchaseOrderId = "1"
     this.price = "0.00"
     this.description = "PO"
     this.itemQuantity = [{ number: new ItemLine() }]

@@ -38,7 +38,7 @@ export class StationViewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // console.log("STATION INFORMATION: " + this.station)
-    // this.stationDropName = this.lineIndex + " " + this.station.stationId;
+    this.stationDropName = this.lineIndex + " " + this.station.stationId;
     // console.log("StationID: ")
     // console.log(this.stationId)
     // @ts-ignore
@@ -130,15 +130,15 @@ export class StationViewComponent implements OnInit, OnDestroy {
     switch(newSection){
       case Section.COMPLETED:
         item.currentSection = Section.COMPLETED;
-        item.status = ItemStatus.completed
+        item.itemStatus = ItemStatus.completed
         break;
       case Section.IN_PROGRESS:
         item.currentSection = Section.IN_PROGRESS;
-        item.status = ItemStatus.in_progress
+        item.itemStatus = ItemStatus.in_progress
         break;
       case Section.QUEUE:
         item.currentSection = Section.QUEUE;
-        item.status = ItemStatus.pushed_back
+        item.itemStatus = ItemStatus.pushed_back
         break;
     }
   }

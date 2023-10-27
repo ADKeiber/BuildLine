@@ -35,7 +35,7 @@ export const businessReducer = createImmerReducer(
       case Section.QUEUE:
 
         if(!(itemStatus == ItemStatus.pushed_back || itemStatus == ItemStatus.not_started)){
-          station.backlogItems = station.backlogItems.filter(data => data.id != itemCopy.id)
+          station.backlogItems = station.backlogItems.filter(data => data.itemId != itemCopy.id)
           if(itemStatus == ItemStatus.in_progress || itemStatus == ItemStatus.blocked ){
             itemCopy.currentSection = Section.IN_PROGRESS
             station.currentItems.push(itemCopy)
@@ -44,7 +44,7 @@ export const businessReducer = createImmerReducer(
             station.completedItems.push(itemCopy)
           }
         } else {
-          let oldItem = station.backlogItems.find(data => data.id === itemCopy.id)
+          let oldItem = station.backlogItems.find(data => data.itemId === itemCopy.id)
           station.expanded = !station.expanded;
           oldItem = itemCopy;
         }
@@ -53,7 +53,7 @@ export const businessReducer = createImmerReducer(
       case Section.IN_PROGRESS:
 
         if(!(itemStatus == ItemStatus.blocked || itemStatus == ItemStatus.in_progress)){
-          station.currentItems = station.currentItems.filter(data => data.id != itemCopy.id)
+          station.currentItems = station.currentItems.filter(data => data.itemId != itemCopy.id)
           if(itemStatus == ItemStatus.pushed_back || itemStatus == ItemStatus.not_started ){
             itemCopy.currentSection = Section.QUEUE
             station.backlogItems.push(itemCopy)
@@ -62,7 +62,7 @@ export const businessReducer = createImmerReducer(
             station.completedItems.push(itemCopy)
           }
         } else {
-          let oldItem = station.currentItems.find(data => data.id === itemCopy.id)
+          let oldItem = station.currentItems.find(data => data.itemId === itemCopy.id)
           station.expanded = !station.expanded;
           oldItem = itemCopy;
         }
@@ -71,7 +71,7 @@ export const businessReducer = createImmerReducer(
       case Section.COMPLETED:
 
         if(itemStatus != ItemStatus.completed ){
-          station.completedItems = station.completedItems.filter(data => data.id != itemCopy.id)
+          station.completedItems = station.completedItems.filter(data => data.itemId != itemCopy.id)
           if(itemStatus == ItemStatus.pushed_back || itemStatus == ItemStatus.not_started ){
             itemCopy.currentSection = Section.QUEUE
             station.backlogItems.push(itemCopy)
@@ -80,7 +80,7 @@ export const businessReducer = createImmerReducer(
             station.currentItems.push(itemCopy)
           }
         } else {
-          let oldItem = station.completedItems.find(data => data.id === itemCopy.id)
+          let oldItem = station.completedItems.find(data => data.itemId === itemCopy.id)
           station.expanded = !station.expanded;
           oldItem = action.item;
         }

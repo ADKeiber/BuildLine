@@ -1,7 +1,7 @@
 <p-card class="stationCss" (click)="clicked($event)">
   <div *ngIf="station.stationId != undefined">
     <h5>
-      Station {{station.stationId}}: {{station.name}}
+      Station: {{station.name}}
       <i class="pi" [ngClass]="!this.station.expanded ? 'pi-angle-down' : 'pi-angle-up'" style="font-size: 1rem"></i>
     </h5>
     <p>Warnings: {{station.warnings}}</p>
