@@ -1,0 +1,7 @@
+.scrollWindow{
+  overflow-y:scroll;
+  height: 85%;
+}
+.noScroll{
+  overflow-y:hidden;
+}

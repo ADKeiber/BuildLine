@@ -10,7 +10,7 @@ import {
   updateStationWarnings
 } from "../../../../core/store/actions/business.actions";
 import {interval} from "rxjs";
-import {MessageService, TreeNode} from "primeng/api";
+import {TreeNode} from "primeng/api";
 
 @Component({
   selector: 'app-item-view',
@@ -19,7 +19,7 @@ import {MessageService, TreeNode} from "primeng/api";
 })
 export class ItemViewComponent implements OnInit, DoCheck {
 
-  @Input() item: Item = new Item("1", "", "", ItemStatus.not_started, "1", 1, "", "", "", 0, 0, 0,Section.COMPLETED,"0");
+  @Input() item: Item = new Item("1", "", "", new ItemStatus(""), "1", 1, "", "", "", 0, 0, 0,Section.COMPLETED,"0");
   @Input() stationId: string = "";
   constructor(private _changeRef: ChangeDetectorRef, private store: Store<BusinessState>) { }
 
@@ -34,7 +34,7 @@ export class ItemViewComponent implements OnInit, DoCheck {
     {status:"Blocked"}
   ];
 
-  currentStatus = {status:this.item.itemStatus}
+  currentStatus = {status:this.item.itemStatus.status}
 
   timeInStationMinutes: number = 0;
   timeInStationSeconds: number = 0;
@@ -50,53 +50,57 @@ export class ItemViewComponent implements OnInit, DoCheck {
   oldWTrigger: boolean = false;
   oldETrigger:boolean = false;
   ngOnInit(): void {
-    this.timeInStationMinutes = this.item.getTimeInStationMinutes();
-    this.timeInStationSeconds = this.item.getTimeInStationSeconds();
+    // this.timeInStationMinutes = this.item.getTimeInStationMinutes();
+    // this.timeInStationSeconds = this.item.getTimeInStationSeconds();
+    this.timeInStationMinutes = 0;
+    this.timeInStationSeconds = 0;
     console.log("Item info: ")
     console.log(this.item)
     this.timeInSecondsOnlyOriginal = this.item.timeInStation;
     this.currentTimeInSeconds = this.timeInSecondsOnlyOriginal;
     this.warningTime = this.item.warningInSeconds;
     this.errorTime = this.item.errorInSeconds;
-    this.currentStatus = {status:this.item.itemStatus}
+    this.currentStatus = {status:this.item.itemStatus.status}
+    console.log("Item Status: ")
+    console.log(this.item.itemStatus)
     //warning check
-    if ((this.currentTimeInSeconds >= this.warningTime && this.currentTimeInSeconds < this.errorTime)
-      && (this.item.itemStatus != ItemStatus.not_started && this.item.itemStatus != ItemStatus.pushed_back && this.item.itemStatus != ItemStatus.blocked)) {
-      this.warningTrigger = true;
-      // this.store.dispatch(updateStationWarnings({ station: this.station, wasError: false }));
-    }
-    if ((this.currentTimeInSeconds >= this.warningTime && this.currentTimeInSeconds < this.errorTime)
-      && (this.item.itemStatus != ItemStatus.not_started && this.item.itemStatus != ItemStatus.pushed_back && this.item.itemStatus != ItemStatus.blocked && this.item.itemStatus != ItemStatus.completed)) {
-      if (!this.warningTrigger) {
-        // this.store.dispatch(updateStationWarnings({ station: this.station, wasError: false }));
-      }
-      this.warningTrigger = true;
-      this.errorTrigger = false;
-      this.completedTrigger = false;
-    }
-    //error check
-    if ((this.currentTimeInSeconds >= this.errorTime || this.item.itemStatus == ItemStatus.blocked) && (this.item.itemStatus != ItemStatus.not_started && this.item.itemStatus != ItemStatus.pushed_back && this.item.itemStatus != ItemStatus.completed)) {
-      // this.station.errors++;
-      // this.store.dispatch(updateStationErrors({ stationId: this.stationId, wasWarning: this.warningTrigger }));
-      this.warningTrigger = false;
-      this.errorTrigger = true;
-      this.completedTrigger = false;
-    }
-    if (this.item.itemStatus == ItemStatus.completed) {
-      this.warningTrigger = false;
-      this.errorTrigger = false;
-      this.completedTrigger = true;
-    }
-    if (this.warningTrigger) {
-      this.store.dispatch(updateStationWarnings({ stationId: this.stationId, wasError: false }));
-    }else  if (this.errorTrigger) {
-      this.store.dispatch(updateStationErrors({ stationId: this.stationId, wasWarning: false}));
-    }
-    if (this.completedTrigger) {
-
-    }
-    this.updateBreakdown();
-    this.classChanger();
+    // if ((this.currentTimeInSeconds >= this.warningTime && this.currentTimeInSeconds < this.errorTime)
+    //   && (this.item.itemStatus.status != "not_started" && this.item.itemStatus.status != "pushed_back" && this.item.itemStatus.status != "blocked")) {
+    //   this.warningTrigger = true;
+    //   // this.store.dispatch(updateStationWarnings({ station: this.station, wasError: false }));
+    // }
+    // if ((this.currentTimeInSeconds >= this.warningTime && this.currentTimeInSeconds < this.errorTime)
+    //   && (this.item.itemStatus.status != "not_started" && this.item.itemStatus.status != "pushed_back" && this.item.itemStatus.status != "blocked" && this.item.itemStatus.status != "completed")) {
+    //   if (!this.warningTrigger) {
+    //     // this.store.dispatch(updateStationWarnings({ station: this.station, wasError: false }));
+    //   }
+    //   this.warningTrigger = true;
+    //   this.errorTrigger = false;
+    //   this.completedTrigger = false;
+    // }
+    // //error check
+    // if ((this.currentTimeInSeconds >= this.errorTime || this.item.itemStatus.status == "blocked") && (this.item.itemStatus.status != "not_started" && this.item.itemStatus.status != "pushed_back" && this.item.itemStatus.status != "completed")) {
+    //   // this.station.errors++;
+    //   // this.store.dispatch(updateStationErrors({ stationId: this.stationId, wasWarning: this.warningTrigger }));
+    //   this.warningTrigger = false;
+    //   this.errorTrigger = true;
+    //   this.completedTrigger = false;
+    // }
+    // if (this.item.itemStatus.status == "completed") {
+    //   this.warningTrigger = false;
+    //   this.errorTrigger = false;
+    //   this.completedTrigger = true;
+    // }
+    // if (this.warningTrigger) {
+    //   this.store.dispatch(updateStationWarnings({ stationId: this.stationId, wasError: false }));
+    // }else  if (this.errorTrigger) {
+    //   this.store.dispatch(updateStationErrors({ stationId: this.stationId, wasWarning: false}));
+    // }
+    // if (this.completedTrigger) {
+    //
+    // }
+    // this.updateBreakdown();
+    // this.classChanger();
   }
   classChanger() {
     const obs$ = interval(1000);
@@ -111,21 +115,21 @@ export class ItemViewComponent implements OnInit, DoCheck {
       this.completedTrigger = false;
       //warning check
       if ((this.currentTimeInSeconds >= this.warningTime && this.currentTimeInSeconds < this.errorTime)
-        && (this.item.itemStatus != ItemStatus.not_started && this.item.itemStatus != ItemStatus.pushed_back && this.item.itemStatus != ItemStatus.blocked && this.item.itemStatus != ItemStatus.completed)) {
+        && (this.item.itemStatus.status != "not_started" && this.item.itemStatus.status != "pushed_back" && this.item.itemStatus.status != "blocked" && this.item.itemStatus.status != "completed")) {
         this.warningTrigger = true;
         this.errorTrigger = false;
         this.completedTrigger = false;
 
       }
       //error check
-      if ((this.currentTimeInSeconds >= this.errorTime || this.item.itemStatus == ItemStatus.blocked)
-        && (this.item.itemStatus != ItemStatus.not_started && this.item.itemStatus != ItemStatus.pushed_back && this.item.itemStatus != ItemStatus.completed)) {
+      if ((this.currentTimeInSeconds >= this.errorTime || this.item.itemStatus.status == "blocked")
+        && (this.item.itemStatus.status != "not_started" && this.item.itemStatus.status != "pushed_back" && this.item.itemStatus.status != "completed")) {
         this.warningTrigger = false;
         this.errorTrigger = true;
         this.completedTrigger = false;
       }
       //completed check
-      if (this.item.itemStatus == ItemStatus.completed ) {
+      if (this.item.itemStatus.status == "completed" ) {
         this.warningTrigger = false;
         this.errorTrigger = false;
         this.completedTrigger = true;
@@ -151,6 +155,6 @@ export class ItemViewComponent implements OnInit, DoCheck {
   }
   updateStatus(){
     // console.log("Current Status: " + this.currentStatus.status)
-    this.store.dispatch(updateItemStatus({stationId: this.stationId, oldSection: this.item.currentSection, item:this.item, newStatus:this.currentStatus.status}))
+    // this.store.dispatch(updateItemStatus({stationId: this.stationId, oldSection: this.item.currentSection, item:this.item, newStatus:this.currentStatus.status}))
   }
 }

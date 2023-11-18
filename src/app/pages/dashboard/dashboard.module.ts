@@ -20,6 +20,20 @@ import {StoreModule} from "@ngrx/store";
 import {CardModule} from "primeng/card";
 import {DragulaModule} from "ng2-dragula";
 import {TreeSelectModule} from "primeng/treeselect";
+import { ManageViewerComponent } from './components/manage-viewer/manage-viewer.component';
+import {ButtonModule} from "primeng/button";
+import {ToastModule} from "primeng/toast";
+import {SplitButtonModule} from "primeng/splitbutton";
+import {MessageService} from "primeng/api";
+import { NewviewerComponent } from './components/newviewer/newviewer.component';
+import { NewAnythingComponent } from './components/new-anything/new-anything.component';
+import { NewCompanyComponent } from './components/new-company/new-company.component';
+import { NewItemComponent } from './components/new-item/new-item.component';
+import { NewProductLineComponent } from './components/new-product-line/new-product-line.component';
+import { NewItemStatusComponent } from './components/new-item-status/new-item-status.component';
+import { NewLineComponent } from './components/new-line/new-line.component';
+import { NewPurchaseOrderComponent } from './components/new-purchase-order/new-purchase-order.component';
+import { NewStationComponent } from './components/new-station/new-station.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +42,23 @@ import {TreeSelectModule} from "primeng/treeselect";
     HeaderComponent,
     SideNavComponent,
     SideElementComponent,
-    ManageComponent,
     AnalyticsComponent,
     NavDropdownComponent,
     LineViewComponent,
     StationViewComponent,
     ItemViewComponent,
+    ManageComponent,
+    ManageViewerComponent,
+    NewviewerComponent,
+    NewAnythingComponent,
+    NewCompanyComponent,
+    NewItemComponent,
+    NewProductLineComponent,
+    NewItemStatusComponent,
+    NewLineComponent,
+    NewPurchaseOrderComponent,
+    NewStationComponent,
+
   ],
   exports: [],
   imports: [
@@ -43,10 +68,12 @@ import {TreeSelectModule} from "primeng/treeselect";
     FormsModule,
     DropdownModule,
     StoreModule.forFeature('business', businessReducer),
-
+    ButtonModule,
     CardModule,
     DragulaModule,
     TreeSelectModule,
+    ToastModule,
+    SplitButtonModule,
   ]
 })
 export class DashboardModule { }

@@ -42,9 +42,7 @@ export class StationViewComponent implements OnInit, OnDestroy {
     // console.log("StationID: ")
     // console.log(this.stationId)
     // @ts-ignore
-    this.store.pipe(select(selectBusinessStationWithId(this.stationId))).subscribe( station => this.station = station);
-    // console.log("Station after pipe: ")
-    // console.log(this.station)
+    this.store.pipe(select(selectBusinessStationWithId(this.stationId))).subscribe( (station) => this.testMethod(station));
     this.subs.add(this.dragulaService.dropModel(this.stationDropName)
       .subscribe((data) => {
         let id = data.item.id
@@ -120,6 +118,12 @@ export class StationViewComponent implements OnInit, OnDestroy {
     );
   }
 
+  testMethod(station: Station){
+    this.station = station;
+    console.log("Station information: ")
+    console.log(station);
+  }
+
   /**
    * Updates an item's current section and status based on the new section it will be part of
    *
@@ -130,15 +134,15 @@ export class StationViewComponent implements OnInit, OnDestroy {
     switch(newSection){
       case Section.COMPLETED:
         item.currentSection = Section.COMPLETED;
-        item.itemStatus = ItemStatus.completed
+        item.itemStatus = new ItemStatus("completed")
         break;
       case Section.IN_PROGRESS:
         item.currentSection = Section.IN_PROGRESS;
-        item.itemStatus = ItemStatus.in_progress
+        item.itemStatus = new ItemStatus("in_progress")
         break;
       case Section.QUEUE:
         item.currentSection = Section.QUEUE;
-        item.itemStatus = ItemStatus.pushed_back
+        item.itemStatus = new ItemStatus("pushed_back")
         break;
     }
   }

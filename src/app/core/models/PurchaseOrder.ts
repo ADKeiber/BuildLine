@@ -1,5 +1,5 @@
 import {Item} from "./Item";
-import {Company} from "./Company";
+import {Customer} from "./Company";
 import {ItemLine} from "./ItemLine";
 
 export class PurchaseOrder {
@@ -11,7 +11,7 @@ export class PurchaseOrder {
   }]
   receivedDate: Date;
   dueDate: Date;
-  business: Company
+  business: Customer
   items: Item[]
   constructor() {
     this.purchaseOrderId = "1"
@@ -20,7 +20,7 @@ export class PurchaseOrder {
     this.itemQuantity = [{ number: new ItemLine() }]
     this.receivedDate = new Date();
     this.dueDate = new Date();
-    this.business = new Company();
+    this.business = new Customer("", "", "");
     this.items = [];
   }
 }

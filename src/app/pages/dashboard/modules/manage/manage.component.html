@@ -1,1 +1,8 @@
-<p>manage works!</p>
+<div class="h-screen noScroll">
+  <app-header></app-header>
+  <app-nav-dropdown class="block sm:hidden mt-3"></app-nav-dropdown>
+  <div class="flex flex-row flex-wrap align-items-stretch w-12 h-full">
+    <app-side-nav class="hidden sm:flex justify-content-center font-bold border-gray-300 border-right-2 w-2 "></app-side-nav>
+    <router-outlet></router-outlet>
+  </div>
+</div>

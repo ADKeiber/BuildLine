@@ -1,13 +1,13 @@
-import {Company} from "./Company";
+import {Customer} from "./Company";
 
 export class ItemLine {
   id: string;
   description: string;
-  company: Company;
+  company: Customer;
 
   constructor(){
     this.id = "";
     this.description = "";
-    this.company = new Company();
+    this.company = new Customer("","","");
   }
 }

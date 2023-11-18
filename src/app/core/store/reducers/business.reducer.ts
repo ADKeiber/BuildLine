@@ -34,12 +34,12 @@ export const businessReducer = createImmerReducer(
 
       case Section.QUEUE:
 
-        if(!(itemStatus == ItemStatus.pushed_back || itemStatus == ItemStatus.not_started)){
+        if(!(itemStatus.status == "pushed_back" || itemStatus.status == "not_started")){
           station.backlogItems = station.backlogItems.filter(data => data.itemId != itemCopy.id)
-          if(itemStatus == ItemStatus.in_progress || itemStatus == ItemStatus.blocked ){
+          if(itemStatus.status == "in_progress" || itemStatus.status == "blocked" ){
             itemCopy.currentSection = Section.IN_PROGRESS
             station.currentItems.push(itemCopy)
-          } else if (itemStatus == ItemStatus.completed){
+          } else if (itemStatus.status == "completed"){
             itemCopy.currentSection = Section.COMPLETED
             station.completedItems.push(itemCopy)
           }
@@ -52,12 +52,12 @@ export const businessReducer = createImmerReducer(
 
       case Section.IN_PROGRESS:
 
-        if(!(itemStatus == ItemStatus.blocked || itemStatus == ItemStatus.in_progress)){
+        if(!(itemStatus.status == "blocked" || itemStatus.status == "in_progress")){
           station.currentItems = station.currentItems.filter(data => data.itemId != itemCopy.id)
-          if(itemStatus == ItemStatus.pushed_back || itemStatus == ItemStatus.not_started ){
+          if(itemStatus.status == "pushed_back" || itemStatus.status == "not_started" ){
             itemCopy.currentSection = Section.QUEUE
             station.backlogItems.push(itemCopy)
-          } else if (itemStatus == ItemStatus.completed){
+          } else if (itemStatus.status == "completed"){
             itemCopy.currentSection = Section.COMPLETED
             station.completedItems.push(itemCopy)
           }
@@ -70,12 +70,12 @@ export const businessReducer = createImmerReducer(
 
       case Section.COMPLETED:
 
-        if(itemStatus != ItemStatus.completed ){
+        if(itemStatus.status != "completed" ){
           station.completedItems = station.completedItems.filter(data => data.itemId != itemCopy.id)
-          if(itemStatus == ItemStatus.pushed_back || itemStatus == ItemStatus.not_started ){
+          if(itemStatus.status == "pushed_back" || itemStatus.status == "not_started" ){
             itemCopy.currentSection = Section.QUEUE
             station.backlogItems.push(itemCopy)
-          } else if (itemStatus == ItemStatus.in_progress || itemStatus == ItemStatus.blocked){
+          } else if (itemStatus.status == "in_progress" || itemStatus.status == "blocked"){
             itemCopy.currentSection = Section.IN_PROGRESS
             station.currentItems.push(itemCopy)
           }
