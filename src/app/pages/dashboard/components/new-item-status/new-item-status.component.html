@@ -1,6 +1,11 @@
-<p-button icon="pi pi-angle-left" (onClick)="goBack()"></p-button>
-<div class="flex flex-column gap-2">
-  <label htmlFor="username">Status Name</label>
-  <input type="text" pInputText [(ngModel)]="itemStatus.status" />
+<div class="p-6 w-12 h-max scrollWindow">
+
+  <p-button (onClick)="goBack()">Go back!</p-button>
+  <div class="test">
+    <div class="flex flex-column gap-2">
+      <label htmlFor="statusName">Status Name</label>
+      <input type="text" pInputText [(ngModel)]="itemStatus.status" />
+    </div>
+    <p-button  (onClick)="submit()">Create!</p-button>
+  </div>
 </div>
-<p-button icon="pi pi-angle-left" (onClick)="submit()"></p-button>

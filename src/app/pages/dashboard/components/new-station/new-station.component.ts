@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {Station} from "../../../../core/models/Station";
 
 @Component({
   selector: 'app-new-station',
@@ -9,8 +10,11 @@ import {Router} from "@angular/router";
 export class NewStationComponent {
   constructor( private router:Router) {
   }
+  station: Station = new Station("", "");
   goBack(){
     this.router.navigate(['dashboard/manage'])
   }
-
+  submit(){
+    console.log(this.station)
+  }
 }

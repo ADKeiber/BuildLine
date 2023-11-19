@@ -1,14 +1,18 @@
-<p-button icon="pi pi-angle-left" (onClick)="goBack()"></p-button>
-<div class="flex flex-column gap-2">
-  <label htmlFor="username">Address</label>
-  <input type="text" pInputText [(ngModel)]="business.name" />
+<div class="p-6 w-12 h-max scrollWindow">
+  <p-button (onClick)="goBack()">Go Back</p-button>
+  <div class="test">
+    <div class="flex flex-column gap-2">
+      <label htmlFor="address">Address</label>
+      <input type="text" pInputText [(ngModel)]="business.name" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label htmlFor="name">Name</label>
+      <input type="text" pInputText [(ngModel)]="business.address" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label htmlFor="phoneNumber">Phone Number</label>
+      <input type="text" pInputText [(ngModel)]="business.phoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+    </div>
+    <p-button id="button" (onClick)="submit()">Create!</p-button>
+  </div>
 </div>
-<div class="flex flex-column gap-2">
-  <label htmlFor="address">Name</label>
-  <input type="text" pInputText [(ngModel)]="business.address" />
-</div>
-<div class="flex flex-column gap-2">
-  <label htmlFor="phoneNumber">Phone Number</label>
-  <input type="text" pInputText [(ngModel)]="business.phoneNumber" />
-</div>
-<p-button icon="pi pi-angle-left" (onClick)="submit()"></p-button>

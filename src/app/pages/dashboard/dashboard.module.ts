@@ -34,6 +34,7 @@ import { NewItemStatusComponent } from './components/new-item-status/new-item-st
 import { NewLineComponent } from './components/new-line/new-line.component';
 import { NewPurchaseOrderComponent } from './components/new-purchase-order/new-purchase-order.component';
 import { NewStationComponent } from './components/new-station/new-station.component';
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
   declarations: [
@@ -61,19 +62,20 @@ import { NewStationComponent } from './components/new-station/new-station.compon
 
   ],
   exports: [],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    AutoCompleteModule,
-    FormsModule,
-    DropdownModule,
-    StoreModule.forFeature('business', businessReducer),
-    ButtonModule,
-    CardModule,
-    DragulaModule,
-    TreeSelectModule,
-    ToastModule,
-    SplitButtonModule,
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        AutoCompleteModule,
+        FormsModule,
+        DropdownModule,
+        StoreModule.forFeature('business', businessReducer),
+        ButtonModule,
+        CardModule,
+        DragulaModule,
+        TreeSelectModule,
+        ToastModule,
+        SplitButtonModule,
+        InputTextModule,
+    ]
 })
 export class DashboardModule { }
