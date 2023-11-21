@@ -1,10 +1,15 @@
-<p-button icon="pi pi-angle-left" (onClick)="goBack()"></p-button>
-<div class="flex flex-column gap-2">
-  <label htmlFor="description">Company Name</label>
-  <input type="text" pInputText [(ngModel)]="itemLine.company.name" />
+
+<div class="p-6 w-12 h-max scrollWindow">
+  <p-button (onClick)="goBack()">Go Back</p-button>
+  <div class="test">
+    <div class="flex flex-column gap-2">
+      <label htmlFor="description">Company Name</label>
+      <input type="text" pInputText [(ngModel)]="itemLine.company.name" />
+    </div>
+    <div class="flex flex-column gap-2">
+      <label htmlFor="description">Line Description</label>
+      <input type="text" pInputText [(ngModel)]="itemLine.description" />
+    </div>
+    <p-button (onClick)="submit()">Create!</p-button>
+  </div>
 </div>
-<div class="flex flex-column gap-2">
-  <label htmlFor="description">Line Description</label>
-  <input type="text" pInputText [(ngModel)]="itemLine.description" />
-</div>
-<p-button icon="pi pi-angle-left" (onClick)="submit()"></p-button>
